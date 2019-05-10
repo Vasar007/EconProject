@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyWebService", "CurrencyWebService\CurrencyWebService.csproj", "{BE167C87-6562-4700-A5E9-5A48AC132EE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE167C87-6562-4700-A5E9-5A48AC132EE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE167C87-6562-4700-A5E9-5A48AC132EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE167C87-6562-4700-A5E9-5A48AC132EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE167C87-6562-4700-A5E9-5A48AC132EE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08790411-6368-41E0-92AA-4D58A2586324}
+	EndGlobalSection
+EndGlobal
