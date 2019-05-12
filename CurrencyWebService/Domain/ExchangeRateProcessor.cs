@@ -30,7 +30,7 @@ namespace EconProject.CurrencyWebService.Domain
             return parsedJson;
         }
 
-        private static double ExtractExchangeRate(IRestResponse response, string baseCurrency,
+        private static decimal ExtractExchangeRate(IRestResponse response, string baseCurrency,
             string targetCurrency)
         {
             // Example of response: {"base":"USD","rates":{"EUR":0.8904719501},"date":"2019-05-10"}
@@ -50,16 +50,16 @@ namespace EconProject.CurrencyWebService.Domain
                 );
             }
 
-            var exchangeRate = ratesToken.Value<double>(targetCurrency);
+            var exchangeRate = ratesToken.Value<decimal>(targetCurrency);
             return exchangeRate;
         }
 
         #region IExchangeRateProcessor Implementation
 
-        public async Task<double> GetExchangeRateAsync(string baseCurrency, string targetCurrency)
+        public async Task<decimal> GetExchangeRateAsync(string baseCurrency, string targetCurrency)
         {
             IRestResponse response = await SendGetExchangeRateQuery(baseCurrency, targetCurrency);
-            double exchangeRate = ExtractExchangeRate(response, baseCurrency, targetCurrency);
+            decimal exchangeRate = ExtractExchangeRate(response, baseCurrency, targetCurrency);
             return exchangeRate;
         }
 

@@ -4,6 +4,6 @@ namespace EconProject.CurrencyWebService.Domain
 {
     public interface IExchangeRateProcessorAsync
     {
-        Task<double> GetExchangeRateAsync(string baseCurrency, string targetCurrency);
+        Task<decimal> GetExchangeRateAsync(string baseCurrency, string targetCurrency);
     }
 }

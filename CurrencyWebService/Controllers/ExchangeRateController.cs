@@ -18,11 +18,11 @@ namespace EconProject.CurrencyWebService.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<double>> GetExchangeRate(string @base, string target)
+        public async Task<ActionResult<decimal>> GetExchangeRate(string @base, string target)
         {
             try
             {
-                double exchangeRate;
+                decimal exchangeRate;
                 if (string.IsNullOrEmpty(@base) || string.IsNullOrEmpty(target))
                 {
                     exchangeRate = await _exchangeRateProcessor.GetExchangeRateAsync("USD", "EUR");
