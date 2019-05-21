@@ -24,24 +24,26 @@ namespace EconProject.CurrencyWebService.Controllers
         {
             try
             {
-                decimal exchangeRate;
-                if (string.IsNullOrEmpty(@base) || string.IsNullOrEmpty(target))
+                if (string.IsNullOrEmpty(@base))
                 {
-                    exchangeRate =
-                        await _exchangeRateProcessor.GetTargetExchangeRateAsync("USD", "EUR");
+                    throw new ArgumentException("Base currency couldn't be empty.", nameof(@base));
                 }
-                else
+                if (string.IsNullOrEmpty(target))
                 {
-                    exchangeRate =
+                    throw new ArgumentException("Target currency couldn't be empty.",
+                                                nameof(target));
+                }
+
+
+                decimal exchangeRate =
                         await _exchangeRateProcessor.GetTargetExchangeRateAsync(@base, target);
-                }
                 return exchangeRate;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($@"Exception occured: {ex}");
+                return BadRequest(new[] { ex.Message, @base, target });
             }
-            return BadRequest(new[] { @base, target });
         }
 
         [HttpGet]
@@ -50,24 +52,25 @@ namespace EconProject.CurrencyWebService.Controllers
         {
             try
             {
-                ExchangeRates exchangeRate;
-                if (string.IsNullOrEmpty(@base) ||
-                    (!(target is null) && target.All(t => string.IsNullOrEmpty(t))))
+                if (string.IsNullOrEmpty(@base))
                 {
-                    exchangeRate =
-                        await _exchangeRateProcessor.GetExchangeRateAsync("USD", new[] { "EUR" });
+                    throw new ArgumentException("Base currency couldn't be empty.", nameof(@base));
                 }
-                else
+                if ((!(target is null) && target.All(t => string.IsNullOrEmpty(t))))
                 {
-                    exchangeRate = await _exchangeRateProcessor.GetExchangeRateAsync(@base, target);
+                    throw new ArgumentException("Target currencies contains invalid value.",
+                                                nameof(target));
                 }
+
+                ExchangeRates exchangeRate =
+                    await _exchangeRateProcessor.GetExchangeRateAsync(@base, target);
                 return exchangeRate;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($@"Exception occured: {ex}");
+                return BadRequest(new[] { ex.Message, @base, string.Join(',', target) });
             }
-            return BadRequest(new[] { @base, string.Join(',', target) });
         }
     }
 }
